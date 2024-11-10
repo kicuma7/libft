@@ -6,7 +6,7 @@
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 09:54:29 by jquicuma          #+#    #+#             */
-/*   Updated: 2024/11/10 19:24:38 by jquicuma         ###   ########.fr       */
+/*   Updated: 2024/11/10 20:37:55 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,9 @@ void    *ft_memchr(const void *s, int c, size_t n);
 void    *ft_memcpy(void *dest, const void *src, size_t n);
 void    *ft_memmove(void *dest, const void *src, size_t n);
 void    *ft_calloc(size_t num_elements, size_t size);
+void    ft_putchar_fd(char c, int fd);
+void    ft_putstr_fd(char *str, int fd);
+void    ft_putendl_fd(char *str, int fd);
+void    ft_putnbr_fd(int nb, int fd);
 
 #endif
