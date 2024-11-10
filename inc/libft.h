@@ -6,7 +6,7 @@
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 09:54:29 by jquicuma          #+#    #+#             */
-/*   Updated: 2024/11/10 20:37:55 by jquicuma         ###   ########.fr       */
+/*   Updated: 2024/11/10 23:52:00 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <string.h>
 
@@ -35,6 +36,8 @@ char    *ft_strchr(const char *str, int c);
 char    *ft_strrchr(const char *str, int c);
 char    *ft_strnstr(const char *str, const char *needle);
 char    *ft_strdup(const char *src);
+char    *ft_substr(char const *s, unsigned int start, size_t len);
+char    *ft_strjoin(const char *s1, const char *s2);
 void    *ft_memset(void *s, int c, size_t n);
 void    *ft_bzero(void *s, size_t n);
 void    *ft_memchr(const void *s, int c, size_t n);
@@ -45,5 +48,8 @@ void    ft_putchar_fd(char c, int fd);
 void    ft_putstr_fd(char *str, int fd);
 void    ft_putendl_fd(char *str, int fd);
 void    ft_putnbr_fd(int nb, int fd);
+char    *ft_strtrim(char const *s1, char const *set);
+char    **ft_split(const char *str, char c);
+char    *ft_itoa(int n);
 
 #endif
