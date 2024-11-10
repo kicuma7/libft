@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/10 18:36:21 by jquicuma          #+#    #+#             */
-/*   Updated: 2024/11/10 19:13:22 by jquicuma         ###   ########.fr       */
+/*   Created: 2024/11/10 19:15:35 by jquicuma          #+#    #+#             */
+/*   Updated: 2024/11/10 19:20:00 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
-void    *ft_memcpy(void *dest, const void *src, size_t n)
+void    *ft_calloc(size_t num_elements, size_t size)
 {
-    char    *str_src;
-    char    *str_dest;
+    void    *ptr;
 
-    str_src = (char *)src;
-    str_dest = (char *)dest;
-    while (n--)
-        *str_dest++ = *str_src++;
-    return (dest);
+    ptr = malloc(num_elements * size);
+    if (!ptr)
+        return (NULL);
+    ft_bzero(ptr,  num_elements * size);
+    return (ptr);
 }
