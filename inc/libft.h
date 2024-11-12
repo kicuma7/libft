@@ -6,7 +6,7 @@
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 09:54:29 by jquicuma          #+#    #+#             */
-/*   Updated: 2024/11/10 23:52:00 by jquicuma         ###   ########.fr       */
+/*   Updated: 2024/11/12 19:00:55 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,7 @@ void    ft_putnbr_fd(int nb, int fd);
 char    *ft_strtrim(char const *s1, char const *set);
 char    **ft_split(const char *str, char c);
 char    *ft_itoa(int n);
+char    *ft_strmapi(char const *s, char (*f)(unsigned int, char));
+void    ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 #endif
