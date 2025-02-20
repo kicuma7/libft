@@ -6,7 +6,7 @@
 #    By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/20 19:11:38 by jquicuma          #+#    #+#              #
-#    Updated: 2025/02/20 20:21:40 by jquicuma         ###   ########.fr        #
+#    Updated: 2025/02/20 20:38:26 by jquicuma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,13 +23,14 @@ RM = rm -rf
 SRC = ./src/
 OBJ = ./.obj/
 
-FILES =	ft_isalpha \
+FILES =	$(addprefix is/, ft_isalpha \
 		ft_isdigit \
 		ft_isalnum \
 		ft_isascii \
-		ft_isprint \
-		ft_toupper \
-		ft_tolower
+		ft_isprint)
+
+FILES +=	$(addprefix to/, ft_toupper \
+			ft_tolower)
 
 SRCS = $(addprefix $(SRC), $(addsuffix .c, $(FILES)))
 OBJS = $(addprefix $(OBJ), $(addsuffix .o, $(FILES)))
@@ -42,7 +43,7 @@ $(NAME): $(OBJS)
 all: $(NAME)
 
 $(OBJ)%.o: $(SRC)%.c
-	@mkdir -p $(OBJ)
+	@mkdir -p $(OBJ) $(OBJ)to $(OBJ)str $(OBJ)is
 	@echo "$(BYELLOW) Compilando $<"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
