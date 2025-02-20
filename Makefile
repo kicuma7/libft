@@ -6,7 +6,7 @@
 #    By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/20 19:11:38 by jquicuma          #+#    #+#              #
-#    Updated: 2025/02/20 20:38:26 by jquicuma         ###   ########.fr        #
+#    Updated: 2025/02/20 23:22:43 by jquicuma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ BGREEN = \001\033[1;32m\002
 BYELLOW = \001\033[1;96m\002
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 NAME = libft.a
 AR = ar rc
 RN = ranlib
@@ -31,6 +31,14 @@ FILES =	$(addprefix is/, ft_isalpha \
 
 FILES +=	$(addprefix to/, ft_toupper \
 			ft_tolower)
+
+FILES +=	$(addprefix str/, ft_strlen \
+			ft_strlcpy \
+			ft_strlcat \
+			ft_strchr \
+			ft_strrchr \
+			ft_strncmp \
+			ft_strnstr)
 
 SRCS = $(addprefix $(SRC), $(addsuffix .c, $(FILES)))
 OBJS = $(addprefix $(OBJ), $(addsuffix .o, $(FILES)))
@@ -56,6 +64,7 @@ fclean: clean
 re: clean all
 
 run: $(NAME)
-	$(CC) $(CFLAGS) -g3 main.c -L. -lft -o bin
+	$(CC) $(CFLAGS) main.c -L. -lft -o bin
+	./bin
 
 .PHONY: clean fclean re all

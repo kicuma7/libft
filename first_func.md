@@ -1,10 +1,10 @@
- • strlen
- • strlcpy
- • strlcat
- • strchr
- • strrchr
- • strncmp
- • strnstr
+* • strlen
+* • strlcpy
+* • strlcat
+* • strchr
+* • strrchr
+* • strncmp
+* • strnstr
  __________________
 
  • memset
