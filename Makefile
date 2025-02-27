@@ -1,10 +1,13 @@
 NAME = libft.a
 
+
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RN = ranlib
 AR = ar rc
 RM = rm -rf
+BUILD_PRINT = @echo "\e[1;34mBuilding\e[0m \033[0;33m$<\033[0m"
+DONE_PRINT = @echo "\033[0;34m$@\033[0m \033[0;32mSuccessful Builded\033[0m"
 
 SRC = ./src/
 OBJ = ./.obj/
@@ -64,17 +67,25 @@ SRCS = $(addsuffix .c, $(addprefix $(SRC), $(FILES)))
 OBJS = $(addsuffix .o, $(addprefix $(OBJ), $(FILES)))
 
 $(NAME): $(OBJS)
-	$(AR) $@ $<
-	$(RN) $@
+	@$(AR) $@ $<
+	@$(RN) $@
+	@$(DONE_PRINT)
+
+$(OBJ)%.o: $(SRC)%.c
+	@mkdir -p $(OBJ)
+	@mkdir -p $(OBJ)alloc $(OBJ)conver $(OBJ)fd $(OBJ)is $(OBJ)lst \
+	$(OBJ)mem $(OBJ)str $(OBJ)to
+	@$(CC) $(CFLAGS) -c $< -o $@
+	$(BUILD_PRINT)
 
 all: $(NAME)
 
-$(OBJ)%.o: $(SRC)%.c
-	mkdir -p $(OBJ)
-	mkdir -p $(OBJ)alloc $(OBJ)conver $(OBJ)fd $(OBJ)is $(OBJ)lst \
-	$(OBJ)mem $(OBJ)str $(OBJ)to
-	$(CC) $(CFLAGS) -c $< -o $@
+clean:
+	@$(RM) $(OBJ)
 
+fclean: clean
+	@$(RM) $(NAME)
 
-to:
-	$(CC) -c $(SRC)to/ft_tolower.c -o teste.o
+re: fclean all
+
+.PHONY: all clean fclean re
