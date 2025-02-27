@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 20:03:12 by jquicuma          #+#    #+#             */
+/*   Created: 2024/11/08 10:47:21 by jquicuma          #+#    #+#             */
 /*   Updated: 2025/02/27 08:28:01 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	size_t	i;
-	size_t	dest_len;
-	size_t	src_len;
+	t_list	*begin;
+	t_list	*current;
 
-	if ((dest == NULL || src == NULL) && !size)
-		return (0);
-	dest_len = ft_strlen(dest);
-	src_len = ft_strlen(src);
-	i = 0;
-	if (size < dest_len + 1)
-		return (size + src_len);
-	else if (size > dest_len + 1)
+	if (!lst || !f || !(*del))
+		return (NULL);
+	begin = ft_lstnew((*f)(lst->content));
+	if (!begin)
+		return (NULL);
+	current = begin;
+	lst = lst->next;
+	while (lst)
 	{
-		while (src[i] && (dest_len + i) < (size - 1))
+		current->next = ft_lstnew((*f)(lst->content));
+		if (!current->next)
 		{
-			dest[dest_len + i] = src[i];
-			i++;
+			ft_lstclear(&begin, (*del));
+			return (NULL);
 		}
+		current = current->next;
+		lst = lst->next;
 	}
-	dest[dest_len + i] = 0;
-	return (dest_len + src_len);
+	return (begin);
 }

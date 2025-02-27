@@ -5,22 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/20 22:35:43 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/20 23:03:08 by jquicuma         ###   ########.fr       */
+/*   Created: 2024/11/07 20:03:35 by jquicuma          #+#    #+#             */
+/*   Updated: 2025/02/27 08:28:01 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-char	*ft_strrchr(const char *str, int c)
+char	*ft_strrchr(const char *string, int searchedChar)
 {
-	size_t	len;
+	int	i;
 
-	len = ft_strlen(str);
-	if ((!c || !str) && len)
-		return (NULL);
-	while (str[--len])
-		if (str[len] == c)
-			return ((char *)&str[len]);
+	i = ft_strlen(string);
+	while (i >= 0)
+	{
+		if (string[i] == (char)searchedChar)
+			return ((char *)(string + i));
+		i--;
+	}
 	return (NULL);
 }

@@ -5,37 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/20 23:21:34 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/20 23:31:31 by jquicuma         ###   ########.fr       */
+/*   Created: 2024/11/07 20:03:32 by jquicuma          #+#    #+#             */
+/*   Updated: 2025/02/27 08:28:01 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	int	i;
-	int	j;
-	int	found_pos;
+	size_t	i;
+	size_t	j;
 
-	i = 0;
-	if (!haystack || !needle)
+	if ((big == NULL || little == NULL) && !len)
 		return (NULL);
-	while (haystack[i] && --len)
+	if (!*little)
+		return ((char *)big);
+	i = 0;
+	while (big[i] && i < len)
 	{
 		j = 0;
-		if (haystack[i] == needle[j])
-		{
-			found_pos = i;
-			while (haystack[i] == needle[j] && needle[j] && haystack[i])
-			{
-				j++;
-				i++;
-			}
-			if (!needle[j])
-				return ((char *)&haystack[found_pos]);
-			i = found_pos;
-		}
+		while (big[i + j]
+			&& little[j]
+			&& big[i + j] == little[j]
+			&& i + j < len)
+			j++;
+		if (!little[j])
+			return ((char *)(big + i));
 		i++;
 	}
 	return (NULL);

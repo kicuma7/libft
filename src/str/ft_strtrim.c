@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 20:03:12 by jquicuma          #+#    #+#             */
+/*   Created: 2024/11/07 20:03:40 by jquicuma          #+#    #+#             */
 /*   Updated: 2025/02/27 08:28:01 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	i;
-	size_t	dest_len;
-	size_t	src_len;
+	size_t	start;
+	size_t	end;
+	char	*str;
 
-	if ((dest == NULL || src == NULL) && !size)
-		return (0);
-	dest_len = ft_strlen(dest);
-	src_len = ft_strlen(src);
-	i = 0;
-	if (size < dest_len + 1)
-		return (size + src_len);
-	else if (size > dest_len + 1)
+	str = 0;
+	if (s1 && set)
 	{
-		while (src[i] && (dest_len + i) < (size - 1))
-		{
-			dest[dest_len + i] = src[i];
-			i++;
-		}
+		start = 0;
+		end = ft_strlen(s1);
+		while (s1[start] && ft_strchr(set, s1[start]))
+			start++;
+		while (s1[end - 1] && ft_strchr(set, s1[end - 1]) && end > start)
+			end--;
+		str = (char *)malloc(sizeof(char) * (end - start + 1));
+		if (!str)
+			return (NULL);
+		ft_strlcpy(str, s1 + start, (end - start + 1));
 	}
-	dest[dest_len + i] = 0;
-	return (dest_len + src_len);
+	return (str);
 }

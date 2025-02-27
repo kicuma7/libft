@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 20:03:12 by jquicuma          #+#    #+#             */
+/*   Created: 2024/11/07 20:02:45 by jquicuma          #+#    #+#             */
 /*   Updated: 2025/02/27 08:28:01 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
+void	ft_putnbr_fd(int n, int fd)
 {
-	size_t	i;
-	size_t	dest_len;
-	size_t	src_len;
+	long	nbr;
 
-	if ((dest == NULL || src == NULL) && !size)
-		return (0);
-	dest_len = ft_strlen(dest);
-	src_len = ft_strlen(src);
-	i = 0;
-	if (size < dest_len + 1)
-		return (size + src_len);
-	else if (size > dest_len + 1)
+	nbr = n;
+	if (nbr < 0)
 	{
-		while (src[i] && (dest_len + i) < (size - 1))
-		{
-			dest[dest_len + i] = src[i];
-			i++;
-		}
+		ft_putchar_fd('-', fd);
+		nbr *= -1;
 	}
-	dest[dest_len + i] = 0;
-	return (dest_len + src_len);
+	if (nbr / 10 != 0)
+		ft_putnbr_fd(nbr / 10, fd);
+	ft_putchar_fd(nbr % 10 + '0', fd);
 }

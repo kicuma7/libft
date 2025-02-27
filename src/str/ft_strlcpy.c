@@ -5,25 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/20 20:55:34 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/20 21:20:07 by jquicuma         ###   ########.fr       */
+/*   Created: 2024/11/07 20:03:16 by jquicuma          #+#    #+#             */
+/*   Updated: 2025/02/27 08:28:01 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
 	size_t	i;
 
 	i = 0;
-	if (!dst || !src)
-		return (0);
-	while (i < (size - 1) && src[i])
+	if (size > 0)
 	{
-		dst[i] = src[i];
-		i++;
+		while (src[i] && i < (size - 1))
+		{
+			dest[i] = src[i];
+			i++;
+		}
+		dest[i] = 0;
 	}
-	dst[i] = '\0';
-	return (ft_strlen(src));
+	while (src[i])
+		i++;
+	return (i);
 }
