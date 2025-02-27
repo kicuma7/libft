@@ -7,7 +7,7 @@ RN = ranlib
 AR = ar rc
 RM = rm -rf
 BUILD_PRINT = @echo "\e[1;34mBuilding\e[0m \033[0;33m$<\033[0m"
-DONE_PRINT = @echo "\033[0;34m$@\033[0m \033[0;32mSuccessful Builded\033[0m"
+DONE_PRINT = @echo "\e[1;34m$@\033[0m \e[1;32mSuccessful Builded\033[0m"
 
 SRC = ./src/
 OBJ = ./.obj/
