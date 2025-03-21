@@ -67,7 +67,7 @@ SRCS = $(addsuffix .c, $(addprefix $(SRC), $(FILES)))
 OBJS = $(addsuffix .o, $(addprefix $(OBJ), $(FILES)))
 
 $(NAME): $(OBJS)
-	@$(AR) $@ $<
+	@$(AR) $@ $(OBJS)
 	@$(RN) $@
 	@$(DONE_PRINT)
 
